@@ -8,12 +8,39 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var Name = ""
+    @State private var Dumb = false
+    @State private var IsHeSure = false
+    
+    @State private var ShowTogg = false
+    @State private var ShowButt = false
+    
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            TextField("What is your name?", text: $Name).disabled(ShowTogg)
+            if !ShowButt{
+                Button("Submit Name"){
+                    ShowTogg = true
+                    ShowButt = true
+                }
+            }
+            
+            if ShowTogg{
+                Toggle(isOn: $Dumb) {
+                    Text("Are You dumb, \(Name) ?")
+                }
+            }
+            
+            if Dumb{
+                Toggle(isOn: $IsHeSure) {
+                    Text("Are You sure, \(Name) ?")
+                }
+            }
+            if Dumb && IsHeSure{
+                Text("\(Name), you are dumb as hell.")
+            }
+            
         }
         .padding()
     }
