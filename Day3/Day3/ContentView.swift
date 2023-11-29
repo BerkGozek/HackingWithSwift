@@ -32,11 +32,11 @@ struct ContentView: View {
         VStack{
             Text("Food Order").font(.title)
             List {
-                ForEach(PplAndFood.sorted(by: { $0.key < $1.key }), id: \.key) { (name, age) in
+                ForEach(PplAndFood.sorted(by: { $0.key < $1.key }), id: \.key) { (name, food) in
                     HStack {
                         Text("\(name) cooked \(PplNum[name] ?? 0) time(s)")
                         Spacer()
-                        Text(age)
+                        Text(food)
                     }
                 }
                 HStack{
